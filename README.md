@@ -773,3 +773,108 @@ Imagine managing your daily tasks:
    - Mention benefits like reduced parameters (Coupled Gates) and better gate decisions (Peepholes).
 
 ---
+### **Understanding GRU (Gated Recurrent Unit)**
+
+The **Gated Recurrent Unit (GRU)** is a simplified version of the LSTM. It was introduced in 2014 to address some challenges faced by LSTMs while retaining their ability to handle long-term dependencies.
+
+---
+
+### **Problems with LSTM**
+
+1. **Complexity**:
+   - LSTM has multiple gates (Forget, Input, Output) and a separate cell state (\(C_t\)), making it computationally heavy.
+   - More parameters mean longer training times and the risk of overfitting.
+
+2. **Redundancy**:
+   - The Forget Gate and Input Gate are independent, leading to redundant computations.
+   - LSTMs sometimes add and forget information in the same step, which is inefficient.
+
+---
+
+### **How GRU Solves These Problems**
+![image](https://github.com/user-attachments/assets/3aba25b0-d633-4fe7-bd48-36b935e00e90)
+
+1. **Fewer Gates**:
+   - GRU combines the Forget and Input gates into a single **Update Gate**, simplifying the model.
+   - It also eliminates the Output Gate and directly uses the hidden state to generate the output.
+
+2. **No Separate Cell State**:
+   - GRU doesn’t have a separate memory cell (\(C_t\)). Instead, it directly updates and uses the hidden state (\(h_t\)).
+
+3. **Efficiency**:
+   - GRUs have fewer parameters, making them faster to train while still handling long-term dependencies well.
+
+---
+
+### **GRU Architecture**
+
+The GRU has two main gates:
+
+1. **Update Gate (\(z_t\))**:
+   - Decides how much of the past information (\(h_{t-1}\)) should be carried forward and how much new information (\(\tilde{h}_t\)) should be added.
+   - Think of it as a combination of LSTM's Forget and Input Gates.
+
+2. **Reset Gate (\(r_t\))**:
+   - Controls how much past information (\(h_{t-1}\)) should be forgotten before computing the new candidate state (\(\tilde{h}_t\)).
+   - If the Reset Gate is 0, the GRU "forgets" everything and relies only on the new input (\(x_t\)).
+
+---
+
+### **Mathematical Intuition**
+
+![image](https://github.com/user-attachments/assets/e1cd0fb7-8c13-431c-bd39-1d110ccf7833)
+
+
+![image](https://github.com/user-attachments/assets/b790402e-9c78-43d4-9b34-175b3d2b40e1)
+
+---
+
+### **Real-Time Example**
+
+Let’s say you’re trying to remember your daily schedule:
+
+![image](https://github.com/user-attachments/assets/834389d2-2e6c-4b13-a3c6-96379ff5f355)
+
+---
+
+### **GRU Architecture Diagram (Simplified)**
+
+1. **Reset Gate**:
+   - Controls the influence of past information.
+
+2. **Update Gate**:
+   - Balances old and new information.
+
+3. **Final Hidden State**:
+   - Combines results from the gates.
+
+---
+
+### **Why GRU is Better Than LSTM**
+
+1. **Simpler Architecture**:
+   - GRU has only two gates, making it computationally cheaper and faster to train.
+
+2. **Fewer Parameters**:
+   - No separate cell state reduces redundancy.
+
+3. **Similar Performance**:
+   - Despite being simpler, GRUs often perform as well as LSTMs for many tasks.
+
+---
+
+### **Key Points for Interviews**
+
+1. **Differences Between GRU and LSTM**:
+   - GRU has no cell state and fewer gates (Update and Reset).
+   - GRU is faster and simpler, but LSTM offers more control over information flow.
+
+2. **Where GRU Excels**:
+   - Works well when computational resources are limited.
+   - Performs well on small datasets.
+
+3. **Real-Time Examples**:
+   - Use examples like balancing tasks or remembering daily plans to explain the gates.
+
+---
+
