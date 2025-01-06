@@ -450,3 +450,130 @@ At \(t=3\), the word **"sunny"** is being processed. The LSTM needs to remember 
 
 ---
 
+### **Input Gate in LSTM: A Deep Dive**
+
+The **Input Gate** is crucial for updating the cell state with **new information**. While the Forget Gate decides what to discard, the Input Gate determines **what new information to add** to the cell state.
+
+---
+![image](https://github.com/user-attachments/assets/460ea176-2b44-4377-9b5c-959c94b811d0)
+
+### **1. Purpose of the Input Gate**
+The Input Gate ensures that only **relevant parts** of the current input (\(x_t\)) and short-term memory (\(h_{t-1}\)) are added to the cell state. This enables the LSTM to dynamically incorporate new context.
+
+---
+
+### **2. Mathematical Formulas**
+The Input Gate involves two primary operations:  
+![image](https://github.com/user-attachments/assets/90ad250e-2c4c-45dd-8427-85ec82bb4cd1)
+
+
+---
+
+### **3. Key Operations**
+![image](https://github.com/user-attachments/assets/a5a07e0d-4937-44de-9b45-aa5129896003)
+
+---
+
+### **4. Example with Vectors**
+
+#### **Context: Text Processing**
+Imagine analyzing the sentence:  
+**“I loved the food, but the service was slow.”**
+
+At time \(t=4\), the word **"food"** is being processed. The LSTM needs to add this **positive sentiment** to its memory.
+
+---
+
+#### **Step-by-Step Process**
+
+![image](https://github.com/user-attachments/assets/42e61883-3a6f-4e94-bf01-b6f3ecf5cf89)
+
+![image](https://github.com/user-attachments/assets/48957ea5-eacd-4004-b018-35a2f72e2efc)
+
+![image](https://github.com/user-attachments/assets/209ffce3-ea3d-4921-a0fb-5c176351ecef)
+
+
+---
+
+### **5. Real-Time Example**
+#### Sentiment Analysis of Reviews
+When processing the sentence **“The dessert was amazing.”**, the Input Gate ensures that the positive sentiment (from "amazing") is **added** to the memory while keeping some past context.
+
+1. At \(t=3\): The word "dessert" updates memory to focus on food.  
+2. At \(t=4\): The word "amazing" is processed, and the Input Gate integrates this new positive sentiment while forgetting less relevant details about "dessert."
+
+---
+
+### **6. Key Points for Interview**
+1. **Purpose**: Input Gate introduces relevant new information to the cell state.  
+2. **Operations**:  
+![image](https://github.com/user-attachments/assets/c7624a87-b69b-4814-b7a0-f1d48f408ef7)
+
+3. **Focus Area**:  
+   - Understand the role of the **sigmoid** and **tanh** in modulating information flow.  
+   - Be prepared to explain how cell state (\(C_t\)) evolves using examples.  
+   - Highlight how selective addition ensures efficient memory management.  
+
+---
+
+### **Output Gate in LSTM: A Simplified Explanation**
+
+The **Output Gate** determines what the LSTM outputs at a given time step (\(h_t\)), based on the current cell state (\(C_t\)) and the input (\(x_t\)).
+![image](https://github.com/user-attachments/assets/f9f33468-9336-49fa-bf79-25dd3fa7d3bd)
+
+---
+
+### **1. Purpose of the Output Gate**
+The Output Gate decides:
+1. **What to extract** from the cell state to generate the output.
+2. How much of the memory (\(C_t\)) to transform and reveal as the current hidden state (\(h_t\)).
+
+This ensures that only relevant information is propagated forward to the next step.
+
+---
+
+### **2. Mathematical Formulas**
+![image](https://github.com/user-attachments/assets/b0129ceb-9405-4131-8bd5-58eca6b25bcc)
+
+---
+
+### **3. Key Operations**
+![image](https://github.com/user-attachments/assets/e23e63b8-85d1-4d1a-a150-d481fd39f4e8)
+
+
+---
+
+### **4. Example with Vectors**
+
+#### **Scenario**: Sentiment Analysis (continuing from earlier example)
+Let’s assume the LSTM is processing the sentence **"The food was amazing."**, and at time \(t=4\), the word "amazing" is being evaluated. The LSTM must decide to emphasize the **positive sentiment** in its output.
+
+#### **Step-by-Step Process**
+
+![image](https://github.com/user-attachments/assets/75d14d3b-e08b-4633-ae45-71c63af94ff0)
+
+![image](https://github.com/user-attachments/assets/7b473e3c-2eeb-42f0-9fb1-3d224127228f)
+
+---
+
+### **5. Real-Time Example**
+#### Sentiment Analysis (Final Output)
+After processing the entire sentence **"The food was amazing."**, the final \(h_t\) reflects a **positive sentiment score**. This output can be passed to:
+1. A classifier (e.g., for sentiment analysis).
+2. The next time step in the sequence for further contextual understanding.
+
+---
+
+### **6. Key Points for Interview**
+1. **Purpose**: The Output Gate filters and transforms the cell state for generating the current output.
+2. **Mathematical Intuition**:
+   - **Sigmoid (\(o_t\))**: Determines focus.
+   - **Tanh (\(\tanh(C_t)\))**: Converts the cell state into a usable format.
+3. **Critical Operations**:
+   - Emphasize the **multiplication** between \(o_t\) and \(\tanh(C_t)\) as the gate's primary mechanism.
+4. **Common Questions**:
+   - How does the Output Gate work with the cell state?  
+   - Why use \(\tanh\) after the cell state?  
+   - What happens when \(o_t\) is close to 0 or 1?
+
+---
