@@ -379,3 +379,74 @@ LSTM will:
 
 ![image](https://github.com/user-attachments/assets/590ca406-9163-492d-a7e9-97d1a9ea4945)
 Here's a diagram of the LSTM architecture with all the gates and components labeled. It visually shows how input vectors, previous hidden states, and cell states interact and update. Let me know if you need further explanation or edits to the visualization!
+
+---
+
+Let’s dive deep into the **Forget Gate** of an LSTM cell, its **mathematical intuition**, and how it works with **vectors**.
+
+---
+
+### **1. Purpose of the Forget Gate**
+The **Forget Gate** decides which parts of the **previous cell state (C_{t-1})** are irrelevant and can be discarded. This is important for handling **long-term dependencies** by forgetting outdated or unnecessary information.
+![image](https://github.com/user-attachments/assets/028a0080-2f89-472b-8f72-63fb63c04ae2)
+
+---
+
+### **2. Mathematical Formula**
+The Forget Gate output is calculated as:  
+\[
+f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
+\]
+
+![image](https://github.com/user-attachments/assets/a63e26b8-1b64-4b09-9229-91b4ad80a22d)
+
+![image](https://github.com/user-attachments/assets/d3acd065-4bdf-440a-a646-48a3dd937364)
+
+---
+
+### **3. Key Operation: Multiplication, Not Addition**
+- **Element-wise Multiplication**:
+  ![image](https://github.com/user-attachments/assets/1e74b540-b1ac-4f6b-8ac7-e61f164a40c3)
+
+
+- **Why Not Addition?**  
+  Addition doesn’t selectively scale or remove information. Multiplication with \(f_t\) allows control over what gets retained or forgotten.  
+
+---
+
+### **4. Example with Vectors**
+Let’s consider an example:  
+
+#### **Context: Sentence Analysis**
+Suppose you’re analyzing the sentence:  
+**“The weather is sunny, but I feel sad.”**
+
+At \(t=3\), the word **"sunny"** is being processed. The LSTM needs to remember **"sunny"** (positive context) but forget some earlier, less relevant context (like "The weather is").
+
+---
+
+#### **Step-by-Step Calculation**
+
+![image](https://github.com/user-attachments/assets/eb7e21ee-3796-434f-9309-5f7a84fb956a)
+
+
+![image](https://github.com/user-attachments/assets/f8447126-6561-42f8-81be-da892c1aa1b1)
+
+
+---
+
+### **5. Real-Time Example**
+![image](https://github.com/user-attachments/assets/942cea60-fdac-4611-851e-a6230a13b335)
+
+---
+
+### **6. Key Points to Highlight in an Interview**
+1. **Purpose**: The Forget Gate decides **what to forget** based on past hidden states (\(h_{t-1}) and current input (\(x_t\)).  
+2. **Operation**:  
+   - Combines input and hidden state using weights and biases.  
+   - Sigmoid limits the retention values between 0 (forget) and 1 (retain).  
+   - Uses **element-wise multiplication** to selectively scale \(C_{t-1}\).  
+3. **Impact**: Forgetting ensures the LSTM doesn’t get cluttered with irrelevant or outdated information, enabling better focus on current tasks.  
+
+---
+
