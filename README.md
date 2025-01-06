@@ -310,3 +310,72 @@ At each time step, LSTM processes one word from the sentence and decides:
 
 ---
 
+
+
+### **1. LSTM Architecture Overview**
+An LSTM has a structure that consists of three main gates and a cell state.  
+The **combination of vectors** (inputs, outputs, and states) happens within these gates. Here's how it works:
+![image](https://github.com/user-attachments/assets/de9da999-07e5-40ec-b4f4-76c50f017f5c)
+
+#### **Components**
+![image](https://github.com/user-attachments/assets/7b3774c5-3a3c-4f7f-a1d8-f4c605d49d54)
+
+![image](https://github.com/user-attachments/assets/28bf9c4b-53c3-43cf-a484-6bbf2eab4236)
+
+
+---
+
+### **2. How Information Combines at Each Step**
+Let’s process the sentence:  
+**“I loved the movie, but the ending was disappointing.”**
+
+![image](https://github.com/user-attachments/assets/d8ec6dd4-be1d-4d4c-ad06-1896cb84bd1a)
+
+
+#### **Combination Process**
+
+![image](https://github.com/user-attachments/assets/bacfdc35-534e-48f4-a2c6-d29413175dae)
+
+
+![image](https://github.com/user-attachments/assets/55b0831a-e824-4109-9d7f-326ea817ca55)
+
+
+![image](https://github.com/user-attachments/assets/ac007bc9-9848-4fea-8d74-8e5e1961d79f)
+
+
+---
+
+### **3. Key Areas to Focus on for Interviews**
+Here’s what interviewers often ask about LSTM:
+#### **(1) Why LSTMs Are Better Than RNNs**  
+- **Key Point:**  
+  RNNs struggle with long-term dependencies due to vanishing gradients, while LSTMs solve this using gates (forget, input, output) to control memory updates.
+
+#### **(2) Explain Each Gate**
+- **Key Point:**  
+  Clearly explain the **purpose** of each gate (Forget: discard irrelevant info, Input: add new info, Output: focus on relevant info).
+
+#### **(3) Mathematical Formulas**
+- **Key Point:**  
+  Understand the core equations for each gate and how they interact:  
+![image](https://github.com/user-attachments/assets/9fb1269c-44ec-422a-b238-b63c4677c585)
+
+
+#### **(4) Real-World Applications**
+- Sentiment Analysis: Predict user sentiment from a review (e.g., positive or negative).  
+- Stock Price Prediction: Use historical prices to predict future trends.  
+- Machine Translation: Translate sentences from one language to another.
+
+---
+
+### **4. Real-Time Example: Sentiment Analysis (Visual Focus)**
+For the sentence **“I loved the movie, but the ending was disappointing,”**  
+LSTM will:
+1. Retain **positive sentiment** through "loved."
+2. Forget irrelevant information at "but."
+3. Update memory with **negative sentiment** at "disappointing."
+
+---
+
+![image](https://github.com/user-attachments/assets/590ca406-9163-492d-a7e9-97d1a9ea4945)
+Here's a diagram of the LSTM architecture with all the gates and components labeled. It visually shows how input vectors, previous hidden states, and cell states interact and update. Let me know if you need further explanation or edits to the visualization!
